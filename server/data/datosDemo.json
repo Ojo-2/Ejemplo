@@ -1,0 +1,431 @@
+{
+  "contadores": {
+    "socios": 8,
+    "membresias": 8,
+    "pagos": 8,
+    "accesos": 4
+  },
+  "usuarios": [
+    {
+      "usuario": "admin",
+      "nombre": "Administrador Demo",
+      "rol": "administrador",
+      "activo": true,
+      "hash": "scrypt$e1753614b53eec1960cf56aa455b66e2$d7e146394e05c90188711ee812bf6b9e3fd0a00bd5a43a910c3d537a233b4f378fc29ed005f7c13425a5320c48bed3ec4a117f5c15dd54f6d630d22de5996f4f"
+    },
+    {
+      "usuario": "recepcion",
+      "nombre": "Recepcionista Demo",
+      "rol": "recepcionista",
+      "activo": true,
+      "hash": "scrypt$0febb4ccc6b46ae722322bbad52da4e0$140e2a9bbe9a53c7f1ce7ec05c48280fa5cc55d352cafcf5d223cb098853c0a183118b5dd6e0afc7268181a8bc2bbc87a4041cb54decc78d06949aa6b4ca12c1"
+    }
+  ],
+  "planes": [
+    {
+      "id": "mensual",
+      "nombre": "Mensual",
+      "precio": 450,
+      "duracionDias": 30,
+      "disponible": true,
+      "origen": "SUPUESTO"
+    },
+    {
+      "id": "trimestral",
+      "nombre": "Trimestral",
+      "precio": 1200,
+      "duracionDias": 90,
+      "disponible": true,
+      "origen": "SUPUESTO"
+    }
+  ],
+  "socios": [
+    {
+      "id": "S-001",
+      "nombre": "Ana",
+      "apellidos": "Torres López",
+      "telefono": "5500000001",
+      "correo": "ana.torres@example.com",
+      "fechaNacimiento": "1994-02-14",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-10-02",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-002",
+      "nombre": "Luis",
+      "apellidos": "Ramírez Soto",
+      "telefono": "5500000002",
+      "correo": "luis.ramirez@example.com",
+      "fechaNacimiento": "1990-11-23",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-08-31",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-003",
+      "nombre": "Carla",
+      "apellidos": "Méndez Ríos",
+      "telefono": "5500000003",
+      "correo": null,
+      "fechaNacimiento": "1998-03-09",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-10-24",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-004",
+      "nombre": "Mateo",
+      "apellidos": "Ruiz Díaz",
+      "telefono": "5500000004",
+      "correo": null,
+      "fechaNacimiento": "2010-05-14",
+      "cartaResponsiva": true,
+      "estado": "activo",
+      "fechaRegistro": "2026-09-25",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-005",
+      "nombre": "Pedro",
+      "apellidos": "Salas Vega",
+      "telefono": "5500000005",
+      "correo": "pedro.salas@example.com",
+      "fechaNacimiento": "1985-07-30",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-10-16",
+      "registradoPor": "admin"
+    },
+    {
+      "id": "S-006",
+      "nombre": "Rodrigo",
+      "apellidos": "Ibarra Cano",
+      "telefono": "5500000006",
+      "correo": null,
+      "fechaNacimiento": "1992-09-05",
+      "cartaResponsiva": false,
+      "estado": "bloqueado",
+      "fechaRegistro": "2026-10-01",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-007",
+      "nombre": "Elena",
+      "apellidos": "Fuentes Paz",
+      "telefono": "5500000007",
+      "correo": null,
+      "fechaNacimiento": "1988-12-01",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-10-05",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "S-008",
+      "nombre": "Jorge",
+      "apellidos": "Lara Nava",
+      "telefono": "5500000008",
+      "correo": null,
+      "fechaNacimiento": "1979-04-18",
+      "cartaResponsiva": false,
+      "estado": "activo",
+      "fechaRegistro": "2026-10-06",
+      "registradoPor": "recepcion"
+    }
+  ],
+  "pagos": [
+    {
+      "id": "P-001",
+      "socioId": "S-001",
+      "planId": "trimestral",
+      "monto": 1200,
+      "metodo": "tarjeta",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-10-02",
+      "hora": "10:15:00",
+      "aplicado": true,
+      "membresiaId": "M-001",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-002",
+      "socioId": "S-002",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "efectivo",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-08-31",
+      "hora": "18:40:00",
+      "aplicado": true,
+      "membresiaId": "M-002",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-003",
+      "socioId": "S-004",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "efectivo",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-09-25",
+      "hora": "17:05:00",
+      "aplicado": true,
+      "membresiaId": "M-004",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-004",
+      "socioId": "S-005",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "transferencia",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-10-16",
+      "hora": "09:30:00",
+      "aplicado": true,
+      "membresiaId": "M-005",
+      "registradoPor": "admin"
+    },
+    {
+      "id": "P-005",
+      "socioId": "S-002",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "efectivo",
+      "concepto": "RENOVACION",
+      "estado": "confirmado",
+      "fecha": "2026-10-24",
+      "hora": "19:00:00",
+      "aplicado": false,
+      "membresiaId": null,
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-006",
+      "socioId": "S-006",
+      "planId": "trimestral",
+      "monto": 1200,
+      "metodo": "tarjeta",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-10-01",
+      "hora": "12:00:00",
+      "aplicado": true,
+      "membresiaId": "M-006",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-007",
+      "socioId": "S-007",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "efectivo",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-10-05",
+      "hora": "11:00:00",
+      "aplicado": true,
+      "membresiaId": "M-007",
+      "registradoPor": "recepcion"
+    },
+    {
+      "id": "P-008",
+      "socioId": "S-008",
+      "planId": "mensual",
+      "monto": 450,
+      "metodo": "efectivo",
+      "concepto": "ALTA",
+      "estado": "confirmado",
+      "fecha": "2026-10-06",
+      "hora": "11:30:00",
+      "aplicado": true,
+      "membresiaId": "M-008",
+      "registradoPor": "recepcion"
+    }
+  ],
+  "membresias": [
+    {
+      "id": "M-001",
+      "socioId": "S-001",
+      "planId": "trimestral",
+      "pagoId": "P-001",
+      "estado": "activa",
+      "inicio": "2026-10-02",
+      "vencimiento": "2026-12-31",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-001",
+          "planId": "trimestral",
+          "desde": "2026-10-02",
+          "hasta": "2026-12-31",
+          "fecha": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "M-002",
+      "socioId": "S-002",
+      "planId": "mensual",
+      "pagoId": "P-002",
+      "estado": "activa",
+      "inicio": "2026-08-31",
+      "vencimiento": "2026-09-30",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-002",
+          "planId": "mensual",
+          "desde": "2026-08-31",
+          "hasta": "2026-09-30",
+          "fecha": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "id": "M-004",
+      "socioId": "S-004",
+      "planId": "mensual",
+      "pagoId": "P-003",
+      "estado": "activa",
+      "inicio": "2026-09-25",
+      "vencimiento": "2026-10-25",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-003",
+          "planId": "mensual",
+          "desde": "2026-09-25",
+          "hasta": "2026-10-25",
+          "fecha": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "id": "M-005",
+      "socioId": "S-005",
+      "planId": "mensual",
+      "pagoId": "P-004",
+      "estado": "activa",
+      "inicio": "2026-10-16",
+      "vencimiento": "2026-11-15",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-004",
+          "planId": "mensual",
+          "desde": "2026-10-16",
+          "hasta": "2026-11-15",
+          "fecha": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "id": "M-006",
+      "socioId": "S-006",
+      "planId": "trimestral",
+      "pagoId": "P-006",
+      "estado": "activa",
+      "inicio": "2026-10-01",
+      "vencimiento": "2026-12-30",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-006",
+          "planId": "trimestral",
+          "desde": "2026-10-01",
+          "hasta": "2026-12-30",
+          "fecha": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "id": "M-007",
+      "socioId": "S-007",
+      "planId": "mensual",
+      "pagoId": "P-007",
+      "estado": "suspendida",
+      "inicio": "2026-10-05",
+      "vencimiento": "2026-11-04",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-007",
+          "planId": "mensual",
+          "desde": "2026-10-05",
+          "hasta": "2026-11-04",
+          "fecha": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "M-008",
+      "socioId": "S-008",
+      "planId": "mensual",
+      "pagoId": "P-008",
+      "estado": "cancelada",
+      "inicio": "2026-10-06",
+      "vencimiento": "2026-11-05",
+      "historial": [
+        {
+          "tipo": "ACTIVACION",
+          "pagoId": "P-008",
+          "planId": "mensual",
+          "desde": "2026-10-06",
+          "hasta": "2026-11-05",
+          "fecha": "2026-10-06"
+        }
+      ]
+    }
+  ],
+  "accesos": [
+    {
+      "id": "A-001",
+      "fecha": "2026-10-20",
+      "hora": "08:05:00",
+      "socioId": "S-001",
+      "resultado": "AUTORIZADO",
+      "motivo": null,
+      "membresiaId": "M-001",
+      "usuario": "recepcion"
+    },
+    {
+      "id": "A-002",
+      "fecha": "2026-10-21",
+      "hora": "18:20:00",
+      "socioId": "S-002",
+      "resultado": "RECHAZADO",
+      "motivo": "MEMBRESIA_VENCIDA",
+      "membresiaId": "M-002",
+      "usuario": "recepcion"
+    },
+    {
+      "id": "A-003",
+      "fecha": "2026-10-22",
+      "hora": "07:45:00",
+      "socioId": "S-006",
+      "resultado": "RECHAZADO",
+      "motivo": "SOCIO_BLOQUEADO",
+      "membresiaId": "M-006",
+      "usuario": "recepcion"
+    },
+    {
+      "id": "A-004",
+      "fecha": "2026-10-24",
+      "hora": "17:10:00",
+      "socioId": "S-004",
+      "resultado": "AUTORIZADO",
+      "motivo": null,
+      "membresiaId": "M-004",
+      "usuario": "recepcion"
+    }
+  ]
+}

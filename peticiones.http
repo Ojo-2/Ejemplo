@@ -1,0 +1,149 @@
+# Peticiones de prueba para el backend del SACG.
+# Uso: instala la extensión "REST Client" de VS Code, arranca la API (npm run server:demo)
+# y haz clic en "Send Request" sobre cada bloque. Los tokens se guardan solos.
+
+@host = http://localhost:3001/api
+
+### 1. Login como recepcionista
+# @name loginRecepcion
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{ "usuario": "recepcion", "contrasena": "Recep#2026" }
+
+###
+@recepcion = {{loginRecepcion.response.body.data.token}}
+
+### 2. Login como administrador
+# @name loginAdmin
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{ "usuario": "admin", "contrasena": "Admin#2026" }
+
+###
+@admin = {{loginAdmin.response.body.data.token}}
+
+### ---------------- Ejemplos del documento (datos de demostración) ----------------
+
+### Ejemplo 1: acceso autorizado (S-001, vence 2026-12-31)
+POST {{host}}/accesos/validar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "S-001" }
+
+### Ejemplo 2: acceso rechazado por vencimiento (S-002)
+POST {{host}}/accesos/validar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "S-002" }
+
+### Ejemplo 3: activar sin pago -> 409 PAGO_REQUERIDO (S-003)
+POST {{host}}/membresias/activar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "S-003" }
+
+### Ejemplo 4: renovar membresía vencida (M-002)
+POST {{host}}/membresias/M-002/renovar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "planId": "mensual" }
+
+### ---------------- Flujo completo ----------------
+
+### A. Registrar socio
+# @name altaSocio
+POST {{host}}/socios
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{
+  "nombre": "Rosa",
+  "apellidos": "Vega Luna",
+  "telefono": "5511112222",
+  "correo": "rosa.vega@example.com",
+  "fechaNacimiento": "1995-06-20"
+}
+
+###
+@socioId = {{altaSocio.response.body.data.id}}
+
+### B. Ver planes
+GET {{host}}/planes
+Authorization: Bearer {{recepcion}}
+
+### C. Pago simulado (el monto debe ser igual a la tarifa del plan)
+POST {{host}}/pagos
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "{{socioId}}", "planId": "mensual", "metodo": "efectivo", "monto": 450 }
+
+### D. Activar membresía
+# @name activar
+POST {{host}}/membresias/activar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "{{socioId}}" }
+
+###
+@membresiaId = {{activar.response.body.data.id}}
+
+### E. Consultar fechas
+GET {{host}}/membresias/{{socioId}}
+Authorization: Bearer {{recepcion}}
+
+### F. Intentar entrar
+POST {{host}}/accesos/validar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "{{socioId}}" }
+
+### G. Bitácora (solo administrador)
+GET {{host}}/accesos?limite=10
+Authorization: Bearer {{admin}}
+
+### H. Pago para renovar
+POST {{host}}/pagos
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "{{socioId}}", "planId": "mensual", "metodo": "tarjeta", "monto": 450 }
+
+### I. Renovar (vigente: se suma al vencimiento actual)
+POST {{host}}/membresias/{{membresiaId}}/renovar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "planId": "mensual" }
+
+### ---------------- Otros ----------------
+
+### Buscar socios por nombre
+GET {{host}}/socios?q=torres
+Authorization: Bearer {{recepcion}}
+
+### Socio bloqueado -> SOCIO_BLOQUEADO (200, autorizado:false)
+POST {{host}}/accesos/validar
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "S-006" }
+
+### Pago con monto incorrecto -> 409 MONTO_INCORRECTO
+POST {{host}}/pagos
+Authorization: Bearer {{recepcion}}
+Content-Type: application/json
+
+{ "socioId": "S-003", "planId": "mensual", "metodo": "efectivo", "monto": 100 }
+
+### Recepcionista intenta ver la bitácora -> 403
+GET {{host}}/accesos
+Authorization: Bearer {{recepcion}}

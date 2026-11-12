@@ -1,0 +1,19 @@
+{
+  "name": "sacg-backend",
+  "version": "1.0.0",
+  "description": "Backend del Sistema de Administración y Control de Gimnasio (SACG) - Gym Sports Center",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "server": "node server/index.js",
+    "server:demo": "node --env-file=.env.demo server/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}
